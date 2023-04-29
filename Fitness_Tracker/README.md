@@ -27,7 +27,7 @@ Create Python scripts to process, visualize, and model accelerometer and gyrosco
 
 • Counting repetitions, creating a custom algorithm
 
-Lessons Learnt
+##                   LESSON LEARNT
 ## what are Anaconda channels?
    Anaconda is a software tool that helps people with data science and machine learning. It has a package manager called conda that lets people easily install and update different tools. Channels are places where people can find these tools. Anaconda provides default channels, but people can also make their own or use third-party channels. Channels help make sure all the tools work together and can be specified in different ways in conda. They help manage package dependencies and ensure compatibility between packages.
 
@@ -42,3 +42,29 @@ Lessons Learnt
      remove an environment as part of cleaning up.
 #    conda env list
      List all conda environments
+
+#    understanding motion sensor data callected as csv file                   @C:\Users\devar\Downloads\data-science-environment\Fitness_Tracker\data\raw\MetaMotion\MetaMotion\A-bench-heavy_MetaWear_2019-01-14T14.22.49.165_C42732BE255C_Accelerometer_12.500Hz_1.4.4.csv?
+row : epoch (ms),time (01:00),elapsed (s),x-axis (g),y-axis (g),z-axis (g)
+1547473786995,2019-01-14T14:49:46.995,0.000,-0.290,0.887,-0.102
+"epoch (ms)": The first number, 1547473786995, is the timestamp of the measurement in milliseconds since a fixed point in time.
+"time (01:00)": The second value, 2019-01-14T14:49:46.995, represents the time of the measurement in the format of year-month-dayThour:minute:second.millisecond, with the time zone being GMT+1 (Central European Time).
+"elapsed (s)": The third value, 0.000, is the time elapsed since the start of the measurement in seconds. Since this is the first measurement, the elapsed time is 0.
+"x-axis (g)": The fourth value, -0.290, is the acceleration in the x-axis direction in units of gravitational acceleration (g). A negative value indicates that the device is accelerating in the negative x-axis direction.
+"y-axis (g)": The fifth value, 0.887, is the acceleration in the y-axis direction in units of gravitational acceleration (g). A positive value indicates that the device is accelerating in the positive y-axis direction.
+"z-axis (g)": The sixth value, -0.102, is the acceleration in the z-axis direction in units of gravitational acceleration (g). A negative value indicates that the device is accelerating in the negative z-axis direction.
+In summary, this line of data indicates that at the time of 2019-01-14T14:49:46.995 GMT+1, the device was not moving in the x-axis direction but was moving in the y-axis direction with an acceleration of 0.887g and was moving in the negative z-axis direction with an acceleration of -0.102g.
+
+![supervised Learning](https://secure-res.craft.do/v2/VDcx9pyWxusPMveFX3m6KG6HXbjF2gSLkdV3zTrPX8WYRfVmzkPGH8xsArzbWQYDtj738Tte7qX57uaD9Mnm81v5yLyScsYimJrtnyuxJucWzsEH8kLx2utFpSdVnJPZkYqEWGfhw72jwCDfjQWQKgnsfcyY3HfwavJgvNhBiJ2oBULfvMd2rd2j8cBDPmwodMKAXXTWAMJXBgwmRj8BX7ZNK833tFrJsr1oCb8yCBzpRTwuciqgmDDo14K8sdL9yfvp7tEHrxoZLANCiX1HDroaB6LPwgLYmFxZjtjYcXb35HDWby/Image.jpg)
+
+
+# type of data collected?
+   we have 2 csv file collection 1.accelerometer and 2.gyroscope data in all 3 axis x,y and z
+   and their values can be negative or positive based on excercise movement pull/push
+   csv file name indicates if data collected is of accelerometer or gyroscope and also type of exercise individual is performing.
+   filename iteself holds information like excersise-type,data source[accelerometer/gyroscope],timestamp.
+   2 type of values are captured
+   elapsed time :-time taken for a exercise routine in seconds.and number of repititions.
+   limb movement in [x,y,z] : direction of movement of limb data in x,y and z axis are collected.
+
+#  what data we have and how to process it?
+   csv data is in both structured and ubstructured format. we can use data that is part of file name to classify and label data like exercise type,sensor type etc to combine both accelerometer and gyroscope data to single dataframe before proceeding.
