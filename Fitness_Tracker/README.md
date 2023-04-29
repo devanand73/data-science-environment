@@ -15,6 +15,7 @@ Create Python scripts to process, visualize, and model accelerometer and gyrosco
 # Following steps performed to Solve the project goal
 
 . Converting raw data, reading CSV files, splitting data, cleaning
+  Read all the separate raw CSV files, process them, and merge them into a single DataFrame
 
 • Visualizing data, plotting time series data
 
@@ -26,3 +27,6 @@ Create Python scripts to process, visualize, and model accelerometer and gyrosco
 
 • Counting repetitions, creating a custom algorithm
 
+Lessons Learnt
+## what are Anaconda channels?
+   Anaconda is a software tool that helps people with data science and machine learning. It has a package manager called conda that lets people easily install and update different tools. Channels are places where people can find these tools. Anaconda provides default channels, but people can also make their own or use third-party channels. Channels help make sure all the tools work together and can be specified in different ways in conda. They help manage package dependencies and ensure compatibility between packages.
