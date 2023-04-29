@@ -43,7 +43,7 @@ Create Python scripts to process, visualize, and model accelerometer and gyrosco
 #    conda env list
      List all conda environments
 
-#    understanding motion sensor data callected as csv file                   @C:\Users\devar\Downloads\data-science-environment\Fitness_Tracker\data\raw\MetaMotion\MetaMotion\A-bench-heavy_MetaWear_2019-01-14T14.22.49.165_C42732BE255C_Accelerometer_12.500Hz_1.4.4.csv?
+#    understanding motion sensor data callected as csv file "A-bench-heavy_MetaWear_2019-01-14T14.22.49.165_C42732BE255C_Accelerometer_12.500Hz_1.4.4.csv"?
 row : epoch (ms),time (01:00),elapsed (s),x-axis (g),y-axis (g),z-axis (g)
 1547473786995,2019-01-14T14:49:46.995,0.000,-0.290,0.887,-0.102
 "epoch (ms)": The first number, 1547473786995, is the timestamp of the measurement in milliseconds since a fixed point in time.
@@ -68,3 +68,5 @@ In summary, this line of data indicates that at the time of 2019-01-14T14:49:46.
 
 #  what data we have and how to process it?
    csv data is in both structured and ubstructured format. we can use data that is part of file name to classify and label data like exercise type,sensor type etc to combine both accelerometer and gyroscope data to single dataframe before proceeding.
+
+ #  [what is supervised learning?](https://www.tibco.com/reference-center/what-is-supervised-learning/)
