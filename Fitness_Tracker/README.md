@@ -30,3 +30,15 @@ Create Python scripts to process, visualize, and model accelerometer and gyrosco
 Lessons Learnt
 ## what are Anaconda channels?
    Anaconda is a software tool that helps people with data science and machine learning. It has a package manager called conda that lets people easily install and update different tools. Channels are places where people can find these tools. Anaconda provides default channels, but people can also make their own or use third-party channels. Channels help make sure all the tools work together and can be specified in different ways in conda. They help manage package dependencies and ensure compatibility between packages.
+
+   ## 5 conda environment commands?
+#    conda env create -f environment.yml-
+    create a new enviroment
+#    conda env update --file environment.yml --prune
+     tells conda to remove any packages that are no longer needed or are outdated from the environment.
+#    conda env export --name tracking-barbell-exercises > environment.yml
+     conda will export a list of all the packages and dependencies installed in the "tracking-barbell-exercises" environment and save it in an "environment.yml" file. 
+#    conda env remove --name tracking-barbell-exercises
+     remove an environment as part of cleaning up.
+#    conda env list
+     List all conda environments
