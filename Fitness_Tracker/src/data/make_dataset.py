@@ -52,8 +52,6 @@ acc_set = 1
 gyro_set = 1
 ##loop through all files in the list and store them to dataframes
 for f in files:
-    
-
     file = f.split("/")[-1].split("\\")[-1]
     parts = file.split("-")
     participant = parts[0]
@@ -66,14 +64,89 @@ for f in files:
     df["label"] = label
     df["category"] = category
     if "Accelerometer" in f:
-        df['set'] = acc_set
+        df["set"] = acc_set
         acc_set += 1
         acc_df = pd.concat([acc_df, df])
         acc_df
     elif "Gyroscope" in f:
-        df['set'] = gyro_set
+        df["set"] = gyro_set
         gyro_set += 1
         gyro_df = pd.concat([gyro_df, df])
         gyro_df
-        
-        gyro_df[gyro_df['category'] == 'heavy']
+
+    ##transform  epoch (ms) and time (01:00) to pandas datetime format
+
+    df["time (01:00)"] = pd.to_datetime(df["time (01:00)"])
+    df["epoch (ms)"] = pd.to_datetime(df["epoch (ms)"], unit="ms")
+    #df["weekday_name"] = df["time (01:00)"].dt.day_name()
+
+    acc_df.index = pd.to_datetime(acc_df["epoch (ms)"], unit="ms")
+    gyro_df.index = pd.to_datetime(gyro_df["epoch (ms)"], unit="ms")
+
+    acc_df = acc_df.drop("epoch (ms)", axis=1)
+    acc_df = acc_df.drop("elapsed (s)", axis=1)
+    acc_df = acc_df.drop("time (01:00)", axis=1)
+
+    gyro_df = gyro_df.drop("epoch (ms)", axis=1)
+    gyro_df = gyro_df.drop("elapsed (s)", axis=1)
+    gyro_df = gyro_df.drop("time (01:00)", axis=1)
+
+
+## refactor code to create a function to process the files
+
+
+
+def read_data_from_file(files):
+    files = glob("../../data/raw/MetaMotion/MetaMotion/*.csv")
+
+    ##create 2 dataframes for accelerometer and gyroscope files to process filename and store features
+    acc_df = pd.DataFrame()
+    gyro_df = pd.DataFrame()
+    ##create an identifier to set
+    acc_set = 1
+    gyro_set = 1
+
+
+##loop through all files in the list and store them to dataframes
+for f in files:
+    file = f.split("/")[-1].split("\\")[-1]
+    parts = file.split("-")
+    participant = parts[0]
+    subparts = parts[1].split("_")
+    label = subparts[0]
+    subparts = parts[2].split("_")
+    category = subparts[0][:-1]
+    df = pd.read_csv(f)
+    df["participant"] = participant
+    df["label"] = label
+    df["category"] = category
+    if "Accelerometer" in f:
+        df["set"] = acc_set
+        acc_set += 1
+        acc_df = pd.concat([acc_df, df])
+        acc_df
+    elif "Gyroscope" in f:
+        df["set"] = gyro_set
+        gyro_set += 1
+        gyro_df = pd.concat([gyro_df, df])
+        gyro_df
+
+    ##transform  epoch (ms) and time (01:00) to pandas datetime format
+
+    df["time (01:00)"] = pd.to_datetime(df["time (01:00)"])
+    df["epoch (ms)"] = pd.to_datetime(df["epoch (ms)"], unit="ms")
+    # df['weekday_name'] = df['time (01:00)'].dt.day_name()
+
+    acc_df.index = pd.to_datetime(acc_df["epoch (ms)"], unit="ms")
+    gyro_df.index = pd.to_datetime(gyro_df["epoch (ms)"], unit="ms")
+
+    acc_df = acc_df.drop("epoch (ms)", axis=1)
+    acc_df = acc_df.drop("elapsed (s)", axis=1)
+    acc_df = acc_df.drop("time (01:00)", axis=1)
+
+    gyro_df = gyro_df.drop("epoch (ms)", axis=1)
+    gyro_df = gyro_df.drop("elapsed (s)", axis=1)
+    gyro_df = gyro_df.drop("time (01:00)", axis=1)
+return acc_df, gyro_df
+
+acc_df, gyro_df = read_data_from_file(files)
